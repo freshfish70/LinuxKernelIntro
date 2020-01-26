@@ -97,16 +97,24 @@ void birthday_exit(void)
 	printk(KERN_INFO "Birthday module cleanup.\n");
 
 	// Cleanup
-	struct birthday *ptr, *next;
-	list_for_each_entry_safe(ptr, next, &persons_birthdays, list)
+	struct birthday *person_ptr, *next_person_ptr;
+	list_for_each_entry_safe(person_ptr, next_person_ptr, &persons_birthdays, list)
 	{
-		list_del(&ptr->list);
-		kfree(ptr);
+		// Removes the person birthday from the list
+		list_del(&person_ptr->list);
+		// Return the memory to the operating system
+		printk("Freeing memory at address: %p", person_ptr);
+		kfree(person_ptr);
 	}
 
+	// Check of the list has been emptied.
 	if (list_empty(&persons_birthdays))
 	{
 		printk("The birthday list is empty\n");
+	}
+	else
+	{
+		printk("The list is not empty... ouch...");
 	}
 }
 
