@@ -120,7 +120,7 @@ void birthday_exit(void)
 
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("Birthday module description");
-MODULE_AUTHOR("Team X");
+MODULE_AUTHOR("Team 7");
 
 // Called when module is inited/loaded
 module_init(birthday_init);
