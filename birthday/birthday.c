@@ -1,5 +1,9 @@
 /*
-	Birthday module
+	Birthday module developed by
+	Team 7
+	Nils-Jarle Haugen
+	Trygve Woldseth
+	Christoffer A Træen
 
 	Respurces:
 	https://www.oreilly.com/library/view/linux-device-drivers/0596000081/ch10s05.html
@@ -9,6 +13,9 @@
 
 */
 
+/**
+ * Loads nessecary header files
+ */
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/list.h>
@@ -16,6 +23,9 @@
 #include <linux/printk.h>
 #include <linux/slab.h>
 
+/**
+ * Birthday struct, including list_head.
+ */
 struct birthday
 {
 	int day;
@@ -24,9 +34,15 @@ struct birthday
 	struct list_head list;
 };
 
-// Creates a list_head struct with name persons_birthdays
+/**
+ * Creates a list_head struct with person_birthdays as name,
+ * holds all the birthdays in the linked list.
+ */
 LIST_HEAD(persons_birthdays);
 
+/**
+ * Creates a person birthday struct with day, month and year of birth and returns its pointer.
+ */
 struct birthday *create_person_birthday(int day, int month, int year)
 {
 	struct birthday *person_birthday;
@@ -48,8 +64,10 @@ int birthday_init(void)
 	printk(KERN_INFO "Birthday module is loaded.\n");
 
 	struct birthday *person;
+
+	// Creates a birthday for a person
 	person = create_person_birthday(3, 3, 1993);
-	// Adds the person memory location to the persons birthday list
+	// Adds the person memory location to the persons birthday list at then end.
 	list_add_tail(&person->list, &persons_birthdays);
 	person = create_person_birthday(4, 4, 1994);
 	// Adds the person memory location to the persons birthday list
