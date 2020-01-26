@@ -86,7 +86,7 @@ int birthday_init(void)
 	// Iterate over the list of persons birthdays
 	list_for_each_entry(person_ptr, &persons_birthdays, list)
 	{
-		printk("Person birthday: %d/%d/%d\n", ptr->day, ptr->month, ptr->year);
+		printk("Person birthday: %d/%d/%d - Memory address: %p\n", person_ptr->day, person_ptr->month, person_ptr->year, person_ptr);
 	}
 	return 0;
 }
