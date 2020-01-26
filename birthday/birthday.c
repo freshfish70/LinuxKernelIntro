@@ -69,12 +69,22 @@ int birthday_init(void)
 	person = create_person_birthday(3, 3, 1993);
 	// Adds the person memory location to the persons birthday list at then end.
 	list_add_tail(&person->list, &persons_birthdays);
+
 	person = create_person_birthday(4, 4, 1994);
-	// Adds the person memory location to the persons birthday list
 	list_add_tail(&person->list, &persons_birthdays);
 
-	struct birthday *ptr;
-	list_for_each_entry(ptr, &persons_birthdays, list)
+	person = create_person_birthday(5, 5, 1995);
+	list_add_tail(&person->list, &persons_birthdays);
+
+	person = create_person_birthday(6, 6, 1995);
+	list_add_tail(&person->list, &persons_birthdays);
+
+	person = create_person_birthday(7, 7, 1995);
+	list_add_tail(&person->list, &persons_birthdays);
+
+	struct birthday *person_ptr;
+	// Iterate over the list of persons birthdays
+	list_for_each_entry(person_ptr, &persons_birthdays, list)
 	{
 		printk("Person birthday: %d/%d/%d\n", ptr->day, ptr->month, ptr->year);
 	}
